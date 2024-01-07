@@ -14,7 +14,7 @@ import { Textarea } from "../ui/textarea";
 import FileUploader from "../shared/FileUploader";
 import { Input } from "../ui/input";
 
-const PostForm = () => {
+const PostForm = ({ post }) => {
   const formSchema = z.object({
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
@@ -64,7 +64,10 @@ const PostForm = () => {
             <FormItem>
               <FormLabel className="shad-form-label">Add Photos</FormLabel>
               <FormControl>
-                <FileUploader />
+                <FileUploader
+                  fieldChange={field.onChange}
+                  mediaUrl={post?.url}
+                />
               </FormControl>
               <FormMessage className="shad-form_message" />
             </FormItem>
